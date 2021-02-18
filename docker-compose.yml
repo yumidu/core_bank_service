@@ -5,24 +5,26 @@ services:
     image: mysql:latest
     networks:
       - spring-boot-mysql-network
-    restart: always
+    ports:
+      - "3306:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=bank_rest
-    hostname:
-      - "127.0.0.1"
   soap-service:
     image: dockeryumi/bank.soap.service:latest
     networks:
       - spring-boot-mysql-network
-    restart: always
-  soap-service:
+  rest-service:
     image: dockeryumi/bank.rest.service:latest
     restart: always
     ports:
       - "4000:4000"
     networks:
       - spring-boot-mysql-network
+    command:
+      - '/bin/sh'
+      - '-c'
+      - '/bin/sleep 1000 && /prog "first argument"'
     depends_on:
       - mysql-service
       - soap-service
