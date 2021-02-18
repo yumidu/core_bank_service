@@ -1,7 +1,7 @@
 # core_bank_service
 ## Core banking soap service and rest integrator
 
-###Core Banking SOAP service (bank.soap.service)
+######Core Banking SOAP service (bank.soap.service)
 - Spring boot application with Spring Web and Spring Web Services
 - The wsdl file can be reached at localhost:8090/corebank/accounts.wsdl
 - Maven plugin com.spotify is used to generate the docker images
