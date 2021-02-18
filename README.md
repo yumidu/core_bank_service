@@ -1,12 +1,12 @@
 # core_bank_service
- Core banking soap service and rest integrator
- 
- Core Banking SOAP service (bank.soap.service)
-•	Spring boot application with Spring Web and Spring Web Services
-•	The wsdl file can be reached at localhost:8090/corebank/accounts.wsdl
-•	Maven plugin com.spotify is used to generate the docker images
-Core Banking REST Integrator (bank.rest.service)
-•	This is the REST integrator created for Core Banking SOAP service
+## Core banking soap service and rest integrator
+
+###Core Banking SOAP service (bank.soap.service)
+- Spring boot application with Spring Web and Spring Web Services
+- The wsdl file can be reached at localhost:8090/corebank/accounts.wsdl
+- Maven plugin com.spotify is used to generate the docker images
+  
+###Core Banking REST Integrator (bank.rest.service)This is the REST integrator created for Core Banking SOAP service
 •	Apache CXF /Wsdl2j was used to generate the java classes for the SOAP service form the .wsdl of the SOAP service
 •	Audit events are added to each endpoint and they are saved to a MySQL database using Audit4j 
 o	Database: localhost:3306/bank_rest
