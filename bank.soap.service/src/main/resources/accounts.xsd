@@ -1,0 +1,105 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://bankservice.com/bankdetails"
+           targetNamespace="http://bankservice.com/bankdetails" elementFormDefault="qualified">
+
+    <xs:element name="getAccountRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="account_no" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getAccountResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="account" type="tns:account"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getAccountBalanceRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="account_no" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getAccountBalanceResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="balance" type="xs:float"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getAccountBalancePerUserRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="user_id" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getAccountBalancePerUserResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="balance" type="xs:float"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="transferToOwnAccountRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="user_id" type="xs:string"/>
+                <xs:element name="from_account_no" type="xs:string"/>
+                <xs:element name="to_account_no" type="xs:string"/>
+                <xs:element name="transfer_amount" type="xs:float"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="transferToOtherAccountRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="user_id" type="xs:string"/>
+                <xs:element name="from_account_no" type="xs:string"/>
+                <xs:element name="to_account_no" type="xs:string"/>
+                <xs:element name="transfer_amount" type="xs:float"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="transferToOwnAccountResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="accountTransferResult" type="tns:accountTransferResult"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="transferToOtherAccountResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="accountTransferResult" type="tns:accountTransferResult"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="account">
+        <xs:sequence>
+            <xs:element name="user_id" type="xs:string"/>
+            <xs:element name="account_no" type="xs:string"/>
+            <xs:element name="balance" type="xs:float"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="accountTransferResult">
+        <xs:sequence>
+            <xs:element name="from_account" type="tns:account"/>
+            <xs:element name="to_account" type="tns:account"/>
+            <xs:element name="transfer_state" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

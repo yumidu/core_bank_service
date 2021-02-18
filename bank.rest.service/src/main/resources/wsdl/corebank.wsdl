@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://bankservice.com/bankdetails" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://bankservice.com/bankdetails" targetNamespace="http://bankservice.com/bankdetails">
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://bankservice.com/bankdetails">
+
+            <xs:element name="getAccountRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="account_no" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="getAccountResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="account" type="tns:account"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="getAccountBalanceRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="account_no" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="getAccountBalanceResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="balance" type="xs:float"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="getAccountBalancePerUserRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="user_id" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="getAccountBalancePerUserResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="balance" type="xs:float"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="transferToOwnAccountRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="user_id" type="xs:string"/>
+                        <xs:element name="from_account_no" type="xs:string"/>
+                        <xs:element name="to_account_no" type="xs:string"/>
+                        <xs:element name="transfer_amount" type="xs:float"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="transferToOtherAccountRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="user_id" type="xs:string"/>
+                        <xs:element name="from_account_no" type="xs:string"/>
+                        <xs:element name="to_account_no" type="xs:string"/>
+                        <xs:element name="transfer_amount" type="xs:float"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="transferToOwnAccountResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="accountTransferResult" type="tns:accountTransferResult"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="transferToOtherAccountResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="accountTransferResult" type="tns:accountTransferResult"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:complexType name="account">
+                <xs:sequence>
+                    <xs:element name="user_id" type="xs:string"/>
+                    <xs:element name="account_no" type="xs:string"/>
+                    <xs:element name="balance" type="xs:float"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:complexType name="accountTransferResult">
+                <xs:sequence>
+                    <xs:element name="from_account" type="tns:account"/>
+                    <xs:element name="to_account" type="tns:account"/>
+                    <xs:element name="transfer_state" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="getAccountBalanceRequest">
+        <wsdl:part element="tns:getAccountBalanceRequest" name="getAccountBalanceRequest">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="transferToOwnAccountRequest">
+        <wsdl:part element="tns:transferToOwnAccountRequest" name="transferToOwnAccountRequest">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getAccountBalanceResponse">
+        <wsdl:part element="tns:getAccountBalanceResponse" name="getAccountBalanceResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getAccountBalancePerUserRequest">
+        <wsdl:part element="tns:getAccountBalancePerUserRequest" name="getAccountBalancePerUserRequest">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getAccountBalancePerUserResponse">
+        <wsdl:part element="tns:getAccountBalancePerUserResponse" name="getAccountBalancePerUserResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="transferToOwnAccountResponse">
+        <wsdl:part element="tns:transferToOwnAccountResponse" name="transferToOwnAccountResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getAccountRequest">
+        <wsdl:part element="tns:getAccountRequest" name="getAccountRequest">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="transferToOtherAccountRequest">
+        <wsdl:part element="tns:transferToOtherAccountRequest" name="transferToOtherAccountRequest">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getAccountResponse">
+        <wsdl:part element="tns:getAccountResponse" name="getAccountResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="transferToOtherAccountResponse">
+        <wsdl:part element="tns:transferToOtherAccountResponse" name="transferToOtherAccountResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="AccountsPort">
+        <wsdl:operation name="getAccountBalance">
+            <wsdl:input message="tns:getAccountBalanceRequest" name="getAccountBalanceRequest">
+            </wsdl:input>
+            <wsdl:output message="tns:getAccountBalanceResponse" name="getAccountBalanceResponse">
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="transferToOwnAccount">
+            <wsdl:input message="tns:transferToOwnAccountRequest" name="transferToOwnAccountRequest">
+            </wsdl:input>
+            <wsdl:output message="tns:transferToOwnAccountResponse" name="transferToOwnAccountResponse">
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAccountBalancePerUser">
+            <wsdl:input message="tns:getAccountBalancePerUserRequest" name="getAccountBalancePerUserRequest">
+            </wsdl:input>
+            <wsdl:output message="tns:getAccountBalancePerUserResponse" name="getAccountBalancePerUserResponse">
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAccount">
+            <wsdl:input message="tns:getAccountRequest" name="getAccountRequest">
+            </wsdl:input>
+            <wsdl:output message="tns:getAccountResponse" name="getAccountResponse">
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="transferToOtherAccount">
+            <wsdl:input message="tns:transferToOtherAccountRequest" name="transferToOtherAccountRequest">
+            </wsdl:input>
+            <wsdl:output message="tns:transferToOtherAccountResponse" name="transferToOtherAccountResponse">
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="AccountsPortSoap11" type="tns:AccountsPort">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getAccountBalance">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="getAccountBalanceRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getAccountBalanceResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="transferToOwnAccount">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="transferToOwnAccountRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="transferToOwnAccountResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAccountBalancePerUser">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="getAccountBalancePerUserRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getAccountBalancePerUserResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAccount">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="getAccountRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getAccountResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="transferToOtherAccount">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="transferToOtherAccountRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="transferToOtherAccountResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="AccountsPortService">
+        <wsdl:port binding="tns:AccountsPortSoap11" name="AccountsPortSoap11">
+            <soap:address location="http://localhost:8090/corebank"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
