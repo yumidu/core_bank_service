@@ -21,10 +21,6 @@ services:
       - "4000:4000"
     networks:
       - spring-boot-mysql-network
-    command:
-      - '/bin/sh'
-      - '-c'
-      - '/bin/sleep 1000 && /prog "first argument"'
     depends_on:
       - mysql-service
       - soap-service
